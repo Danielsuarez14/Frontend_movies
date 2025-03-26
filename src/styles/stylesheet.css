@@ -1,0 +1,455 @@
+/* Images */
+#icons {
+    height: 30px;
+}
+
+#book {
+    height: 260px;
+    width: 180px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: -12px 12px 15px 1px rgba(0, 0, 0, 0.2);
+}
+
+#book_home {
+    height: 200px;
+    width: 150px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: -12px 12px 15px 1px rgba(0, 0, 0, 0.2);
+
+}
+
+.book_right {
+    animation: arise-right 3s ease-in both;
+}
+
+.book_left {
+    animation: arise-left 3s ease-in both;
+}
+
+/* Navbar */
+#navbar {
+    display: grid;
+    position: sticky;
+    grid-area: navbar;
+    grid-column: 1/4;
+    grid-row: 1;
+    top: 0;
+    z-index: 2;
+    height: 60px;
+    grid-template-columns: 3fr repeat(2, 1fr);
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#navbar Button {
+    height: 45px;
+    width: 200px;
+    align-self: center;
+    justify-self: center;
+    background-color: #fac000;
+    color: black;
+    border: 1px solid #f9d14f;
+    margin-right: 10px;
+}
+
+#navbar Button:hover {
+    animation: growth 1s linear both;
+}
+
+#navbar h1 {
+    grid-column: 1;
+    font-size: 30px;
+    align-self: center;
+    color: #fac000;
+}
+
+/* Home */
+#home {
+    display: grid;
+    background-color: #fafdff;
+    min-height: 100vh;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    grid-template-areas:
+        "navbar navbar"
+        "filter ."
+        "table table"
+    ;
+    grid-template-rows: 100px 200px 1fr;
+}
+
+
+#filter {
+    padding: 20px;
+    width: 500px;
+    background-color: rgb(242, 242, 242);
+    grid-area: filter;
+    margin-top: 10px;
+    border-radius: 10px;
+    z-index: 1;
+    justify-self: center;
+
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+}
+
+#filter Button {
+    width: 70px;
+}
+
+#table {
+    display: grid;
+    grid-area: table;
+    width: 1400px;
+    justify-self: center;
+    margin-top: 25px;
+    text-align: center;
+    font-size: 17px;
+}
+
+#table Button {
+    width: 80px;
+    height: 45px;
+}
+
+#table th {
+    font-size: 19px;
+}
+
+/* Create Book */
+
+#create_book {
+    display: grid;
+    height: 100vh;
+    background-color: #fafdff;
+    grid-template-rows: 100px 300px;
+    grid-template-columns: 300px 1fr 300px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+
+#submit {
+    display: grid;
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#table_submit {
+    display: grid;
+    margin-top: 30px;
+    justify-self: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(5, 75px);
+    width: 600px;
+    height: 400px;
+    background-color: rgb(242, 242, 242);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#autor {
+    grid-column: 1/-1;
+    height: 50px;
+    align-self: center;
+}
+
+#title {
+    grid-column: 1/-1;
+    height: 50px;
+    align-self: center;
+}
+
+#year {
+    grid-column: 1/-1;
+    height: 50px;
+    align-self: center;
+}
+
+#table_submit Button {
+    grid-row: 5;
+}
+
+/* Login */
+
+#login {
+    display: grid;
+    grid-template-rows: 100px 1fr 1fr;
+    grid-template-columns: 300px 1fr 300px;
+    height: 695px;
+    background-color: #fafdff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#table_login {
+    display: grid;
+    height: 500px;
+    grid-column: 2;
+    grid-row: 2/4;
+    justify-self: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(6, 60px);
+    gap: 20px;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+}
+
+#table_login p {
+    grid-column: 1/-1;
+    grid-row: 2;
+}
+
+#email {
+    grid-column: 1/-1;
+    grid-row: 3;
+}
+
+#password {
+    grid-column: 1/-1;
+    grid-row: 4;
+}
+
+#table_login Button {
+    grid-row: 5;
+}
+
+#element {
+    height: 50px;
+    grid-column: span 2;
+}
+
+#row {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-row: 2/4;
+}
+
+/* Recovery */
+
+#recovery {
+    display: grid;
+    justify-self: center;
+    grid-column: 2;
+    grid-row: 2;
+}
+
+#recovery Form {
+    display: grid;
+    height: 300px;
+    width: 600px;
+    grid-template-rows: repeat(3, 100px);
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#recovery h1 {
+    font-size: 40px;
+}
+
+#text_confirm {
+    font-size: 20px;
+    margin-left: 10px;
+    grid-row: 1;
+    align-self: center;
+    justify-self: center;
+}
+
+#loading {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-self: center;
+}
+
+#circle {
+    height: 30px;
+    width: 30px;
+    margin-left: 2px;
+    border-radius: 50%;
+    background-color: #ff0000;
+
+    animation: load 5s ease both;
+    animation-iteration-count: 3;
+}
+
+#circle:nth-child(2) {
+    animation-delay: 300ms;
+}
+
+#circle:nth-child(3) {
+    animation-delay: 600ms;
+}
+
+/* change password */
+#confirm {
+    height: 200px;
+    width: 500px;
+    display: grid;
+    grid-template-rows: repeat(3, 50px);
+    grid-template-columns: repeat(2, 1fr);
+    border-radius: 10px;
+    background-color: #f2f2f2;
+}
+
+#confirm h1 {
+    grid-column: span 2;
+    margin-top: 10px;
+    justify-self: center;
+    font-size: 20px;
+}
+
+#confirm p {
+    grid-column: span 2;
+    grid-row: 2;
+}
+
+/* Create User */
+#create_user {
+    display: grid;
+    padding: 20px;
+    grid-template-rows: repeat(5, 1fr);
+    grid-column: 2;
+    grid-row: 2;
+    height: 500px;
+    width: 700px;
+    justify-self: center;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+}
+
+#confirm_user{
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: center;
+    display: grid;
+    padding: 20px;
+    border-radius: 10px;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    height: 400px;
+    width: 500px;
+    background-color: #f2f2f2;
+}
+
+#confirm_user Button{
+    grid-row: 5;
+}
+
+
+/* Buttons */
+#red_button {
+    background-color: #d61111;
+    color: #fff;
+    border: none;
+    justify-self: center;
+    align-self: center;
+    margin-left: 10px;
+    width: 150px;
+    height: 50px;
+}
+
+#yellow_button {
+    background-color: #fac000;
+    color: #0f0f0f;
+    border: none;
+    justify-self: center;
+    align-self: center;
+    margin-left: 10px;
+    width: 150px;
+    height: 50px;
+}
+
+#red_button:hover {
+    animation: red-button 700ms linear both;
+}
+
+#yellow_button:hover {
+    animation: yellow-button 700ms linear both;
+}
+
+/* keyframes */
+
+@keyframes growth {
+    to {
+        width: 250px;
+    }
+}
+
+@keyframes red-button {
+    to {
+        background-color: #1192ef;
+        color: #0f0f0f;
+    }
+}
+
+@keyframes yellow-button {
+    to {
+        background-color: #2c003d;
+        color: #fff;
+    }
+}
+
+@keyframes load {
+    0% {
+        background-color: #d61111;
+    }
+
+    50% {
+        background-color: #f5cc00;
+    }
+
+    100% {
+        background-color: rgb(0, 156, 0);
+    }
+}
+
+@keyframes arise-right {
+    0% {
+        transform: translateX(300px);
+        opacity: 0.5;
+        width: 90px;
+        height: 130px;
+    }
+
+    50% {
+        width: 90px;
+        height: 130px;
+        opacity: 0.5;
+        transform: translateX(0);
+    }
+
+    100% {
+        opacity: 1;
+        height: 260px;
+        width: 180px;
+    }
+}
+
+@keyframes arise-left {
+    0% {
+        transform: translateX(-300px);
+        opacity: 0.5;
+        width: 90px;
+        height: 130px;
+    }
+
+    50% {
+        width: 90px;
+        height: 130px;
+        opacity: 0.5;
+        transform: translateX(0);
+    }
+
+    100% {
+        opacity: 1;
+        height: 260px;
+        width: 180px;
+    }
+}
