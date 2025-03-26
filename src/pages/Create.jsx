@@ -1,4 +1,4 @@
-import { Button, Row, Form, InputGroup } from "react-bootstrap"
+import { Button, Form, InputGroup } from "react-bootstrap"
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
@@ -17,6 +17,7 @@ function Create() {
       title: "",
       publication_year: "",
     })
+    const api_url = import.meta.env.API_URL
 
   axios.interceptors.request.use(
     (config) => {
@@ -36,12 +37,12 @@ function Create() {
   const dataReceived = location.state
 
   const createBooks = async () => {
-    const response = await axios.post('http://localhost:3001/api/v1/', values)
+    const response = await axios.post(`${api_url}/api/v1/`, values)
   }
 
   const updateBook = async () => {
     const id = dataReceived.position
-    const response = await axios.put(`http://localhost:3001/api/v1/${id}`, values)
+    const response = await axios.put(`${api_url}/api/v1/${id}`, values)
     setUpdate(false)
   }
 

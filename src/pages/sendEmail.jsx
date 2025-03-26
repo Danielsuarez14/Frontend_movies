@@ -13,10 +13,10 @@ function ForPassword() {
             email: "",
         }
     )
-
     const navigate = useNavigate()
     const location = useLocation()
     const dataReceived = location.state
+    const api_url = import.meta.env.API_URL
 
 
     const handleSubmitSend = () => {
@@ -28,7 +28,7 @@ function ForPassword() {
     }
 
     const sendEmail = async () => {
-        const response = await axios.post('http://localhost:3001/api/v2/user/auth/recovery', valueEmail)
+        const response = await axios.post(`${api_url}/api/v2/user/auth/recovery`, valueEmail)
     }
 
     useEffect(() => {

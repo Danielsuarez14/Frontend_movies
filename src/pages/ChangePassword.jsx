@@ -1,4 +1,4 @@
-import { Button, Row, Form, InputGroup, Col } from "react-bootstrap"
+import { Button, Form, InputGroup, Col } from "react-bootstrap"
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { useNavigate, useLocation } from "react-router-dom"
@@ -8,7 +8,6 @@ function ChangePassword() {
 
     const [password, setPassword] = useState('')
     const [enable, setEnable] = useState(false)
-
     const [values, setValues] = useState(
         {
             token: "",
@@ -19,6 +18,7 @@ function ChangePassword() {
     const navigate = useNavigate()
     const location = useLocation()
     const dataReceived = location.state
+    const api_url = import.meta.env.API_URL
 
     const checkButton = () => {
         setEnable(!enable)
@@ -35,7 +35,7 @@ function ChangePassword() {
     }
 
     const changePassword = async () => {
-        const response = await axios.post('http://localhost:3001/api/v2/user/change-password', values)
+        const response = await axios.post(`${api_url}/api/v2/user/change-password`, values)
     }
 
 

@@ -4,12 +4,14 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Navbar from '../components/Navbar'
+import { meta } from '@eslint/js'
 
 function Home() {
   const [book, setBook] = useState([])
   const [search, setSearch] = useState('')
   const [ofilter, setOfilter] = useState('')
   const navigate = useNavigate()
+  const api_url = import.meta.env.API_URL
 
 
   axios.interceptors.request.use(
@@ -25,7 +27,7 @@ function Home() {
 
 
   const GetBooks = async () => {
-    const response = await axios.get('http://localhost:3001/api/v1/')
+    const response = await axios.get(`${api_url}/api/v1/`)
     if (book !== response.data) {
       setBook(response.data)
 
@@ -34,7 +36,7 @@ function Home() {
 
 
   const getBook = async (id) => {
-    const response = await axios.get(`http://localhost:3001/api/v1/${id}`)
+    const response = await axios.get(`${api_url}/api/v1/${id}`)
     const dataToSend = await { author: response.data.id_author, title: response.data.title, year: response.data.publication_year, update: true, position: id }
     navigate('/create', { state: dataToSend })
   }
@@ -42,7 +44,7 @@ function Home() {
 
 
   const deleteBook = async (id) => {
-    const result = await axios.delete(`http://localhost:3001/api/v1/${id}`)
+    const result = await axios.delete(`${api_url}/api/v1/${id}`)
     GetBooks()
   }
 

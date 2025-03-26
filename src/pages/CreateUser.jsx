@@ -18,6 +18,8 @@ function CreateUser() {
             password: "",
         }
     )
+    const api_url = import.meta.env.API_URL
+
     const checkButton = () => {
         setEnable(!enable)
     }
@@ -30,7 +32,7 @@ function CreateUser() {
         setValues(json)
     }
     const create = async () => {
-        const response = await axios.post('http://localhost:3001/api/v2/user/', values)
+        const response = await axios.post(`${api_url}/api/v2/user/`, values)
         console.log(response.data)
 
     }

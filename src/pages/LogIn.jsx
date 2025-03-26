@@ -9,13 +9,12 @@ function LogIn() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
-
     const navigate = useNavigate()
+    const api_url = import.meta.env.API_URL
 
     const logInUser = async (json) => {
         try {
-            const response = await axios.post('http://localhost:3001/api/v2/user/auth', json)
+            const response = await axios.post(`${api_url}/api/v2/user/auth`, json)
             Cookies.set('token', response.data.token, {expires: 1, secure: false, sameSite: 'Strict'})
             navigate('/')
         } catch (err) {
