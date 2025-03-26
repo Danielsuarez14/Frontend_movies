@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Navbar from '../components/Navbar'
-import { meta } from '@eslint/js'
 
 function Home() {
   const [book, setBook] = useState([])
@@ -123,47 +122,47 @@ function Home() {
         <img id='book_home' src='/img-2.jpg' alt="img-2" />
         <img id='book_home' src='/img-4.png' alt="img-4" />
       </div>
-        <div id="table">
-          <Table striped bordered hover >
-            <thead>
-              <tr>
-                <th>Author</th>
-                <th>Title</th>
-                <th>Publication year</th>
-                <th>Edit/Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                book.map((bookIndex) => (
-                  <tr key={bookIndex.id_book}>
-                    <td>{bookIndex.name}</td>
-                    <td>{bookIndex.title}</td>
-                    <td>{bookIndex.publication_year}</td>
-                    <td>
-                      <Button
-                        id='yellow_button'
-                        value={book.id_book}
-                        onClick={() => { getBook(bookIndex.id_book) }}
-                        disabled={!Cookies.get('token')} >Edit</Button>
+      <div id="table">
+        <Table striped bordered hover >
+          <thead>
+            <tr>
+              <th>Author</th>
+              <th>Title</th>
+              <th>Publication year</th>
+              <th>Edit/Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Array.isArray(book) &&
+              book.map((bookIndex) => (
+                <tr key={bookIndex.id_book}>
+                  <td>{bookIndex.name}</td>
+                  <td>{bookIndex.title}</td>
+                  <td>{bookIndex.publication_year}</td>
+                  <td>
+                    <Button
+                      id='yellow_button'
+                      value={book.id_book}
+                      onClick={() => { getBook(bookIndex.id_book) }}
+                      disabled={!Cookies.get('token')} >Edit</Button>
 
-                      <Button
-                        id="red_button"
-                        disabled={!Cookies.get('token')}
-                        onClick={() => { deleteBook(bookIndex.id_book) }}>Delete</Button>
+                    <Button
+                      id="red_button"
+                      disabled={!Cookies.get('token')}
+                      onClick={() => { deleteBook(bookIndex.id_book) }}>Delete</Button>
 
-                    </td>
-                  </tr>
+                  </td>
+                </tr>
 
-                ))
-              }
-            </tbody>
-          </Table>
-        </div>
+              ))
+            }
+          </tbody>
+        </Table>
       </div>
-      )
+    </div>
+  )
 }
 
-      export default Home
+export default Home
 
 
