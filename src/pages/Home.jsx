@@ -26,11 +26,7 @@ function Home() {
 
 
   const GetBooks = async () => {
-    console.log('1', api_url)
-    
     const response = await axios.get(`${api_url}/api/v1/`)
-    console.log('2', response.data)
-    console.log('3', response)
     if (book !== response.data) {
       setBook(response.data)
     }

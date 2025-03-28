@@ -18,7 +18,7 @@ function CreateUser() {
             password: "",
         }
     )
-    const api_url = import.meta.env.API_URL
+    const api_url = import.meta.env.VITE_API_URL
 
     const checkButton = () => {
         setEnable(!enable)

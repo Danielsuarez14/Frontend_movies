@@ -17,7 +17,7 @@ function Create() {
       title: "",
       publication_year: "",
     })
-    const api_url = import.meta.env.API_URL
+    const api_url = import.meta.env.VITE_API_URL
 
   axios.interceptors.request.use(
     (config) => {
