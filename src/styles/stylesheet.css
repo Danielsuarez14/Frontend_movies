@@ -296,6 +296,7 @@
     grid-template-columns: repeat(2, 1fr);
     border-radius: 10px;
     background-color: #f2f2f2;
+    
 }
 
 #confirm h1 {
@@ -306,6 +307,7 @@
 }
 
 #confirm p {
+    justify-self: center;
     grid-column: span 2;
     grid-row: 2;
 }
