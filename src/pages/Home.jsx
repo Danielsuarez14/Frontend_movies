@@ -10,7 +10,7 @@ function Home() {
   const [search, setSearch] = useState('')
   const [ofilter, setOfilter] = useState('')
   const navigate = useNavigate()
-  const api_url = import.meta.env.API_URL
+  const api_url = import.meta.env.VITE_API_URL
 
 
   axios.interceptors.request.use(
@@ -26,14 +26,10 @@ function Home() {
 
 
   const GetBooks = async () => {
-    console.log('GetBooks1')
     const response = await axios.get(`${api_url}/api/v1/`)
-    console.log('GetBooks2')
     if (book !== response.data) {
       setBook(response.data)
-      console.log('GetBooks3')
     }
-    console.log('GetBooks4')
   }
 
 
