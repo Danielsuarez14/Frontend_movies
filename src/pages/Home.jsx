@@ -26,6 +26,7 @@ function Home() {
 
 
   const GetBooks = async () => {
+    console.log('GetBooks')
     const response = await axios.get(`${api_url}/api/v1/`)
     if (book !== response.data) {
       setBook(response.data)
@@ -49,6 +50,7 @@ function Home() {
 
   useEffect(() => {
     GetBooks()
+    console.log('HI')
   }, [])
 
 
