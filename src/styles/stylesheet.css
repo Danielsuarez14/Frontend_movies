@@ -494,11 +494,27 @@
         width: 0;
         height: 0;
     }
+    #book{
+        width: 0;
+        height: 0;
+    }
 }
 
 @media(max-width: 640px){
     #navbar Button{
         height: 40px;
         width: 150px;
+    }
+}
+
+@media(max-width: 320px){
+    #navbar Button{
+        height: 40px;
+        width: 110px;
+        font-size: 15px;
+    }
+
+    #navbar h1{
+        font-size: 25px;
     }
 }
