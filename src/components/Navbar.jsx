@@ -42,7 +42,7 @@ function Navbar() {
         <Button
           onClick={() => navigate('/')}
         >
-          Back to Home
+          Back
         </Button>)}
 
       {!Cookies.get('token') && position === '/' && (

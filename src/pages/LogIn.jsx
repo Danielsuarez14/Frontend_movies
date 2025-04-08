@@ -86,7 +86,7 @@ function LogIn() {
                 >
                     Create User
                 </Button>
-                <Link to={'/forpassword'}>Forgot your password? Click here</Link>
+                <Link id="element" to={'/forpassword'}>Forgot your password? Click here</Link>
             </Form>
             <div id='row'>
                 <img className='book_right' id="book" src='/img-3.jpg' alt="img-3" />

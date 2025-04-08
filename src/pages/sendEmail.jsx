@@ -1,4 +1,4 @@
-import { Button, Row, Form, InputGroup, Col } from "react-bootstrap"
+import { Button, Form, InputGroup, Col } from "react-bootstrap"
 import axios from "axios"
 import { useState, useEffect } from "react"
 import { useNavigate, useLocation } from "react-router-dom"
@@ -71,14 +71,14 @@ function ForPassword() {
 
                     </Form>)}
                 {enable && (
-                    <>
+                    <section id="container_confirm">
                         <p id="text_confirm">Verify your email, we are sending to you a link</p>
                         <div id="loading">
                             <div id="circle"></div>
                             <div id="circle"></div>
                             <div id="circle"></div>
                         </div>
-                    </>
+                    </section>
                 )}
             </div>
             <div id='row'>
