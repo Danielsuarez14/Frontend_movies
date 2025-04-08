@@ -10,6 +10,7 @@ function Create() {
   const [author, setAuthor] = useState('')
   const [title, setTitle] = useState('')
   const [year, setYear] = useState('')
+  const [bookImage, setBookImage] = useState('')
   const [update, setUpdate] = useState(false)
   const [values, setValues] = useState(
     {
@@ -17,7 +18,12 @@ function Create() {
       title: "",
       publication_year: "",
     })
-    const api_url = import.meta.env.VITE_API_URL
+  const [imageValues, setimageValues] = useState(
+    {
+      url: "",
+      id: "",
+    })
+  const api_url = import.meta.env.VITE_API_URL
 
   axios.interceptors.request.use(
     (config) => {
@@ -34,16 +40,35 @@ function Create() {
 
   const navigate = useNavigate()
   const location = useLocation()
-  const dataReceived = location.state
+  const { dataToSend, dataImage } = location.state || {};
 
   const createBooks = async () => {
     const response = await axios.post(`${api_url}/api/v1/`, values)
   }
 
+  const createImage = async () => {
+    try {
+      const response = await axios.post(`${api_url}/api/v1/image`, imageValues)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const updateBook = async () => {
-    const id = dataReceived.position
+    try {
+      const id = dataToSend?.position
     const response = await axios.put(`${api_url}/api/v1/${id}`, values)
     setUpdate(false)
+    } catch (error) {
+      console.log(error)
+    }
+    
+  }
+
+  const updateImage = async () => {
+    const id = title
+    const url = { url: bookImage}
+    const response = await axios.put(`${api_url}/api/v1/image/${id}`, url)
   }
 
   const handleSubmit = () => {
@@ -53,30 +78,41 @@ function Create() {
       title: title,
       publication_year: year,
     }
+    const jsonImage =
+    {
+      url: bookImage,
+      id: title,
+    }
     setValues(json)
+    setimageValues(jsonImage)
   }
 
   const cleanButton = () => {
     setAuthor('')
     setTitle('')
     setYear('')
+    setBookImage('')
   }
 
   useEffect(() => {
-    if (dataReceived !== null) {
-      setAuthor(dataReceived.author)
-      setTitle(dataReceived.title)
-      setYear(dataReceived.year)
-      setUpdate(dataReceived.update)
+    console.log()
+    if (dataToSend !== undefined &&dataImage !== undefined) {
+      setAuthor(dataToSend?.author)
+      setTitle(dataToSend?.title)
+      setYear(dataToSend?.year)
+      setUpdate(dataToSend?.update)
+      setBookImage(dataImage?.image)
     }
     if (title.length >= 1 && update === false && (author.length === 1 || author.length === 2) && year.length === 4) {
       createBooks()
+      createImage()
       navigate('/')
     } else if (title.length >= 1 && update === true) {
       updateBook()
+      updateImage()
       navigate('/')
     }
-  }, [values])
+  }, [values, imageValues])
   return (
     <div id="create_book">
       <div id="navbar">
@@ -96,7 +132,7 @@ function Create() {
               <h1>Update</h1>
             )}
           </div>
-          <Form.Select id='autor' value={author} onChange={a => setAuthor(a.target.value)}>
+          <Form.Select id='column' value={author} onChange={a => setAuthor(a.target.value)} required>
             <option >Select the author</option>
             <option value="1">J.R.R Tolkien</option>
             <option value="2">C.S Lewis</option>
@@ -108,28 +144,29 @@ function Create() {
 
           </Form.Select>
 
-          <InputGroup id="title">
+          <InputGroup id="column">
             <InputGroup.Text>
-              <img id='icons' src="https://img.icons8.com/?size=100&id=wekXDHaVl92g&format=png&color=000000" alt="title" style={{ maxHeight: '25px' }} />
+              <img id='icons' src="https://img.icons8.com/?size=100&id=wekXDHaVl92g&format=png&color=000000" alt="title"/>
             </InputGroup.Text>
             <Form.Control
               placeholder='Title'
               aria-label='Title'
-              aria-describedby='title'
+              aria-describedby='column'
               value={title}
               onChange={a => setTitle(a.target.value)
               }
+              required
             />
           </InputGroup>
 
-          <InputGroup id="year">
-            <InputGroup.Text id="year">
-              <img id='icons' src="https://img.icons8.com/?size=100&id=wriPEWSue6y6&format=png&color=000000" alt="year" style={{ maxHeight: '25px' }} />
+          <InputGroup id="column">
+            <InputGroup.Text id="column">
+              <img id='icons' src="https://img.icons8.com/?size=100&id=wriPEWSue6y6&format=png&color=000000" alt="year"/>
             </InputGroup.Text>
             <Form.Control
               placeholder='Publication year'
               aria-label='Publication year'
-              aria-describedby='year'
+              aria-describedby='column'
               type='number'
               value={year}
               onChange={a => {
@@ -137,6 +174,20 @@ function Create() {
                   setYear(a.target.value)
                 }
               }}
+              required
+            />
+          </InputGroup>
+          <InputGroup id="column">
+            <InputGroup.Text id="column">
+              <img id='icons' src="https://img.icons8.com/color/48/image.png" alt="book_image"/>
+            </InputGroup.Text>
+            <Form.Control
+              placeholder='Book image'
+              aria-label='Book image'
+              aria-describedby='column'
+              value={bookImage}
+              onChange={a => setBookImage(a.target.value)}
+              required
             />
           </InputGroup>
           <Button

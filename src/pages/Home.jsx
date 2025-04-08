@@ -1,4 +1,4 @@
-import { Button, Form, InputGroup, Table } from 'react-bootstrap'
+import { Button, Form, InputGroup } from 'react-bootstrap'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -8,6 +8,7 @@ import Navbar from '../components/Navbar'
 function Home() {
   const [book, setBook] = useState([])
   const [search, setSearch] = useState('')
+  const [images, setImages] = useState([])
   const [ofilter, setOfilter] = useState('')
   const navigate = useNavigate()
   const api_url = import.meta.env.VITE_API_URL
@@ -27,30 +28,52 @@ function Home() {
 
   const GetBooks = async () => {
     const response = await axios.get(`${api_url}/api/v1/`)
-    if (book !== response.data) {
-      setBook(response.data)
-    }
+    const data = response.data
+    setBook(data)
+    const urls = {}
+      for (var b of data) {
+        const image = await getImage(b.title)
+        if (image.length !== 0) {
+          urls[b.title] = image
+        }
+      }
+      setImages(urls)
   }
 
 
   const getBook = async (id) => {
     const response = await axios.get(`${api_url}/api/v1/${id}`)
-    const dataToSend = await { author: response.data.id_author, title: response.data.title, year: response.data.publication_year, update: true, position: id }
-    navigate('/create', { state: dataToSend })
+    const dataToSend = { author: response.data.id_author, title: response.data.title, year: response.data.publication_year, update: true, position: id }
+    const responseImage = await axios.get(`${api_url}/api/v1/image/${response.data.title}`)
+    const dataImage = {image: responseImage.data}
+    console.log(dataToSend)
+    navigate('/create', { state: {dataToSend, dataImage} })
   }
 
 
 
-  const deleteBook = async (id) => {
+  const deleteBook = async (id, idImage) => {
     const result = await axios.delete(`${api_url}/api/v1/${id}`)
+    const resultImage = await axios.delete(`${api_url}/api/v1/image/${idImage}`)
     GetBooks()
   }
+
+  const getImage = async (id) => {
+    try {
+      const result = await axios.get(`${api_url}/api/v1/image/${id}`)
+      const url = result.data
+      if (result.length !== 0) {
+        return url
+      } 
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 
   useEffect(() => {
     GetBooks()
   }, [])
-
-
 
   useEffect(() => {
     if (ofilter === 'author') {
@@ -121,47 +144,30 @@ function Home() {
         <img id='book_home' src='/img-2.jpg' alt="img-2" />
         <img id='book_home' src='/img-4.png' alt="img-4" />
       </div>
-      <div id="table">
-        <Table striped bordered hover >
-          <thead>
-            <tr>
-              <th>Author</th>
-              <th>Title</th>
-              <th>Publication year</th>
-              <th>Edit/Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Array.isArray(book) &&
-              book.map((bookIndex) => (
-                <tr key={bookIndex.id_book}>
-                  <td>{bookIndex.name}</td>
-                  <td>{bookIndex.title}</td>
-                  <td>{bookIndex.publication_year}</td>
-                  <td>
-                    <Button
-                      id='yellow_button'
-                      value={book.id_book}
-                      onClick={() => { getBook(bookIndex.id_book) }}
-                      disabled={!Cookies.get('token')} >Edit</Button>
+      <div id='cards'>
+        {Array.isArray(book) &&
+          book.map((bookIndex) => (
+            <div id='card' key={bookIndex.id_book}>
+              <img src={images[bookIndex.title]} alt='' />
+              <p>{bookIndex.name}</p>
+              <p id='title_home'>{bookIndex.title}</p>
+              <p>{bookIndex.publication_year}</p>
+              <Button
+                id='yellow_button'
+                value={book.id_book}
+                onClick={() => { getBook(bookIndex.id_book) }}
+                disabled={!Cookies.get('token')} >Edit</Button>
 
-                    <Button
-                      id="red_button"
-                      disabled={!Cookies.get('token')}
-                      onClick={() => { deleteBook(bookIndex.id_book) }}>Delete</Button>
-
-                  </td>
-                </tr>
-
-              ))
-            }
-          </tbody>
-        </Table>
+              <Button
+                id="red_button"
+                disabled={!Cookies.get('token')}
+                onClick={() => { deleteBook(bookIndex.id_book, bookIndex.title) }}>Delete</Button>
+            </div>
+          ))
+        }
       </div>
     </div>
   )
 }
 
 export default Home
-
-

@@ -77,7 +77,7 @@
     grid-template-areas:
         "navbar navbar"
         "filter ."
-        "table table"
+        "cards cards"
     ;
     grid-template-rows: 100px 200px 1fr;
 }
@@ -102,23 +102,57 @@
     width: 70px;
 }
 
-#table {
+#cards {
     display: grid;
-    grid-area: table;
-    width: 1400px;
+    grid-area: cards;
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 70px;
     justify-self: center;
-    margin-top: 25px;
     text-align: center;
+    justify-items: center;
     font-size: 17px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
-#table Button {
-    width: 80px;
-    height: 45px;
+#card {
+    width: 300px;
+    height: 350px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-right: 50px;
+    padding: 20px;
+
+    animation: cards_down auto linear both;
+    animation-timeline: view();
+    animation-range: entry 20% cover 30%;
 }
 
-#table th {
-    font-size: 19px;
+#card img {
+    border-radius: 10px;
+    width: 100px;
+    height: 140px;
+}
+
+#card Button {
+    width: 90px;
+    height: 50px;
+    margin-left: 25px;
+}
+
+#title_home {
+    max-height: 30px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#title{
+    align-self: center;
+    justify-self: center;
+    grid-column: 1/-1;
 }
 
 /* Create Book */
@@ -144,35 +178,23 @@
     margin-top: 30px;
     justify-self: center;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(5, 75px);
+    grid-template-rows: repeat(6, 75px);
     width: 600px;
-    height: 400px;
+    height: 500px;
     background-color: rgb(242, 242, 242);
     padding: 10px;
     border-radius: 10px;
     text-align: center;
 }
 
-#autor {
-    grid-column: 1/-1;
-    height: 50px;
-    align-self: center;
-}
-
-#title {
-    grid-column: 1/-1;
-    height: 50px;
-    align-self: center;
-}
-
-#year {
+#column {
     grid-column: 1/-1;
     height: 50px;
     align-self: center;
 }
 
 #table_submit Button {
-    grid-row: 5;
+    grid-row: 6;
 }
 
 /* Login */
@@ -296,7 +318,7 @@
     grid-template-columns: repeat(2, 1fr);
     border-radius: 10px;
     background-color: #f2f2f2;
-    
+
 }
 
 #confirm h1 {
@@ -326,7 +348,7 @@
     border-radius: 10px;
 }
 
-#confirm_user{
+#confirm_user {
     grid-column: 2;
     grid-row: 2;
     justify-self: center;
@@ -340,7 +362,7 @@
     background-color: #f2f2f2;
 }
 
-#confirm_user Button{
+#confirm_user Button {
     grid-row: 5;
 }
 
@@ -453,5 +475,30 @@
         opacity: 1;
         height: 260px;
         width: 180px;
+    }
+}
+
+@keyframes cards_down{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+/* media query */
+
+@media(max-width: 1300px){
+    #book_home{
+        width: 0;
+        height: 0;
+    }
+}
+
+@media(max-width: 640px){
+    #navbar Button{
+        height: 40px;
+        width: 150px;
     }
 }
