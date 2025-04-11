@@ -497,8 +497,7 @@
 }
 
 /* media query */
-
-@media(max-width: 1300px) {
+@media(max-width: 430px) {
     #book_home {
         display: none;
     }
@@ -506,24 +505,15 @@
     #book {
         display: none;
     }
-}
-
-@media(max-width: 640px) {
-    #navbar Button {
-        height: 40px;
-        width: 150px;
-    }
-}
-
-@media(max-width: 400px) {
     #navbar {
-        grid-template-columns: 160px 110px 110px;
+        width: 100%;
+        grid-template-columns: 9.4rem 7rem 7rem;
     }
 
     #navbar Button {
-        height: 40px;
-        width: 100px;
-        font-size: 13px;
+        height: 2.5rem;
+        width: 6rem;
+        font-size: 0.8rem;
     }
 
     #navbar Button:hover {
@@ -531,60 +521,72 @@
     }
 
     #navbar h1 {
-        font-size: 20px;
+        font-size: 1.3rem;
     }
 
     #filter {
-        width: 340px;
-        margin-left: 20px;
+        width: 20rem;
+        margin-left: 0.5rem;
     }
-
     /* login */
     #login {
-        grid-template-rows: 80px 1fr;
+        grid-template-rows: 5rem 1fr;
         grid-template-columns: 1fr 1fr;
     }
 
     #table_login {
-        width: 350px;
-        height: 380px;
-        margin-right: 20px;
-        font-size: 11px;
+        width: 21rem;
+        height: 30rem;
+        margin-right: 0.7rem;
+        font-size: 1rem;
         text-align: center;
         grid-template-rows: repeat(5, 1fr);
         grid-template-columns: 1fr 1fr;
     }
 
     #login Button {
-        height: 40px;
-        width: 100px;
-        font-size: 13px;
+        height: 2.5rem;
+        width: 6rem;
+        font-size: 0.8rem;
     }
 
     #recovery Form {
         grid-template-rows: repeat(2, 1fr);
         grid-template-columns: 1fr;
-        width: 350px;
-        margin-right: 20px;
+        width: 20rem;
+        margin-right: 1.2rem;
     }
 
     #recovery h1 {
-        font-size: 35px;
+        font-size: 2rem;
     }
 
     #container_confirm {
-        width: 350px;
-        margin-right: 20px;
+        width: 20rem;
+        margin-right: 1.5rem;
         text-align: center;
-        padding: 10px;
+        padding: 1rem;
     }
 
     #confirm {
-        width: 350px;
-        height: 200px;
-        margin-right: 20px;
+        width: 20rem;
+        height: 15rem;
+        margin-right: 1.3rem;
         text-align: center;
         grid-template-rows: repeat(3, 1fr);
         grid-template-columns: repeat(2, 1fr);
+        padding: 1.2rem;
+    }
+
+    #create_user{
+        width: 20rem;
+        height: 30rem;
+        margin-right: 1rem ;
+    }
+
+    #confirm_user{
+        width: 20rem;
+        height: 25rem;
+        margin-right: 1rem;
     }
 }
