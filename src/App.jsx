@@ -7,6 +7,7 @@ import CreateUser from './pages/CreateUser.jsx'
 import ForPassword from './pages/sendEmail.jsx'
 import ChangePassword from './pages/ChangePassword.jsx'
 import './styles/stylesheet.css'
+import './styles/stylePhone.css'
 
 function App() {
   return (
