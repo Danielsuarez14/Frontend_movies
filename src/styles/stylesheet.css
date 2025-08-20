@@ -98,6 +98,10 @@
     gap: 10px;
 }
 
+.filter-text{
+    height: 50px;
+}
+
 #filter Button {
     width: 70px;
 }
@@ -106,7 +110,7 @@
     display: grid;
     grid-area: cards;
     gap: 20px;
-    width: 100%;
+    width: 1450px;
     margin-top: 20px;
     margin-left: 70px;
     justify-self: center;

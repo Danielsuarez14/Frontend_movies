@@ -125,13 +125,14 @@ function Home() {
           <option value="year">Publication year</option>
         </Form.Select>
         <InputGroup>
-          <InputGroup.Text>
+          <InputGroup.Text className='filter-text'>
             <img id='icons' src="https://img.icons8.com/?size=100&id=HjFb6s4aXAL2&format=png&color=000000" alt="year" style={{ maxHeight: '25px' }} />
           </InputGroup.Text>
           <Form.Control
             placeholder='Filter'
             aria-label='Filter'
             aria-describedby='Filter'
+            className ='filter-text'
             value={search}
             onChange={a => setSearch(a.target.value)}
           />
